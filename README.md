@@ -1,4 +1,4 @@
-# NaturalDecay
+# PlayerTroll
 
 My second plugin. For 1.20.4. Made on 2/21/2024.
 
