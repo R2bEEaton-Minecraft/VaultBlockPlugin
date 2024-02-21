@@ -1,0 +1,21 @@
+main: cc.spea.playertroll.PlayerTroll
+name: PlayerTroll
+version: '1.0'
+api-version: '1.20'
+description: Player Troll
+load: POSTWORLD
+author: R2bEEaton
+website: spea.cc
+prefix: PlayerTroll
+commands:
+  pt:
+    description: Player Troll Command
+    aliases:
+      - playertroll
+      - josh
+    permission: playertroll.pt
+    permission-message: You do not have permission!
+permissions:
+  playretroll.pt:
+    description: Allows all commands
+    default: op
