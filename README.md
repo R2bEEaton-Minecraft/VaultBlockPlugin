@@ -10,5 +10,5 @@ Trolls:
 | Name | Description |
 | --- | --- |
 | crouch_hiss | Any time another player un-crouches, the creeper hiss is played nearby. |
-| ghost_blocks | Player breaks the block above the one he intended to. |
+| ghost_blocks | Player breaks the block but CANT lol. |
 | vanish | Player vanishes from the server. Where did he go!? |

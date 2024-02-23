@@ -99,7 +99,7 @@ public class PlayerTroll extends JavaPlugin implements Listener {
     public void blockBreakEvent(BlockBreakEvent event) {
         if (trolls.get("ghost_blocks").contains(event.getPlayer().getName())) {
             event.setCancelled(true);
-            event.getBlock().getLocation().add(0, 1, 0).getBlock().breakNaturally(event.getPlayer().getItemInUse());
+            //event.getBlock().getLocation().add(0, 1, 0).getBlock().breakNaturally(event.getPlayer().getItemInUse());
             //event.getPlayer().sendBlockChange(event.getBlock().getLocation().add(0, -1, 0), Material.AIR.createBlockData());
         }
     }
