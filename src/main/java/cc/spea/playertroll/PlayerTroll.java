@@ -1,11 +1,12 @@
 package cc.spea.playertroll;
 
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -22,6 +23,7 @@ public class PlayerTroll extends JavaPlugin implements Listener {
         trolls.put("crouch_hiss", new HashSet<>());
         trolls.put("ghost_blocks", new HashSet<>());
         trolls.put("vanish", new HashSet<>());
+        trolls.put("place_spoof", new HashSet<>());
 
         for (Player p : getServer().getOnlinePlayers()) {
             onlinePlayers.put(p.getName(), p);
@@ -101,6 +103,21 @@ public class PlayerTroll extends JavaPlugin implements Listener {
             event.setCancelled(true);
             //event.getBlock().getLocation().add(0, 1, 0).getBlock().breakNaturally(event.getPlayer().getItemInUse());
             //event.getPlayer().sendBlockChange(event.getBlock().getLocation().add(0, -1, 0), Material.AIR.createBlockData());
+        }
+    }
+
+    @EventHandler
+    public void blockPlaceEvent(BlockPlaceEvent event) {
+        if (trolls.get("place_spoof").contains(event.getPlayer().getName())) {
+            if (event.getBlock().getLocation().clone().add(0, -16, 0).getBlock().getType().isAir()) return;
+            BlockData place_spoofBlock = event.getBlock().getLocation().clone().add(0, -16, 0).getBlock().getBlockData();
+
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this , () -> {
+                for (Player player : onlinePlayers.values()) {
+                    if (player.getUniqueId() == event.getPlayer().getUniqueId()) continue;
+                    event.getPlayer().sendBlockChange(event.getBlock().getLocation(), place_spoofBlock);
+                }
+            }, 5L);
         }
     }
 }
