@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ListAll extends SubCommand {
 
@@ -35,15 +36,20 @@ public class ListAll extends SubCommand {
         if (args.length == 1) {
             sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] List of active trolls");
             for (String k : pt.trolls.keySet()) {
-                str.add(ChatColor.GRAY + k + ": " + pt.trolls.get(k).toString());
+                StringBuilder out = new StringBuilder();
+                out.append(ChatColor.GRAY).append(k).append(": ");
+                for (UUID p : pt.trolls.get(k)) {
+                    out.append(pt.getServer().getOfflinePlayer(p).getName()).append(" ");
+                }
+                str.add(out.toString());
             }
             sender.sendMessage(String.join("\n", str));
             return true;
         } else if (args.length == 2) {
             sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] List of active trolls on player " + args[1]);
             for (String k : pt.trolls.keySet()) {
-                for (String p : pt.trolls.get(k)) {
-                    if (args[1].equalsIgnoreCase(p)) {
+                for (UUID p : pt.trolls.get(k)) {
+                    if (args[1].equalsIgnoreCase(pt.getServer().getOfflinePlayer(p).getName())) {
                         str.add(ChatColor.GRAY + k);
                     }
                 }

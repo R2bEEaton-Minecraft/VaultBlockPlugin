@@ -2,6 +2,7 @@ package cc.spea.playertroll.subcommands;
 
 import cc.spea.playertroll.PlayerTroll;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -26,10 +27,10 @@ public class GhostBlocks extends SubCommand {
         }
 
         String playerName;
-        Player player = null;
+        OfflinePlayer player = null;
         try {
             playerName = args[1];
-            for (Player p : sender.getServer().getOnlinePlayers()) {
+            for (OfflinePlayer p : sender.getServer().getOfflinePlayers()) {
                 if (p.getName().equalsIgnoreCase(playerName)) {
                     player = p;
                     break;
@@ -41,11 +42,11 @@ public class GhostBlocks extends SubCommand {
             return false;
         }
 
-        if (this.pt.trolls.get("ghost_blocks").contains(player.getName())) {
-            this.pt.trolls.get("ghost_blocks").remove(player.getName());
+        if (this.pt.trolls.get("ghost_blocks").contains(player.getUniqueId())) {
+            this.pt.trolls.get("ghost_blocks").remove(player.getUniqueId());
             sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] ghost_blocks disabled for " + player.getName());
         } else {
-            this.pt.trolls.get("ghost_blocks").add(player.getName());
+            this.pt.trolls.get("ghost_blocks").add(player.getUniqueId());
             sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] ghost_blocks enabled for " + player.getName());
         }
 

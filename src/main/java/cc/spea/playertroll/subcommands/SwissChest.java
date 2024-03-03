@@ -6,20 +6,20 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Vanish extends SubCommand {
+public class SwissChest extends SubCommand {
 
-    public Vanish(PlayerTroll pt) {
+    public SwissChest(PlayerTroll pt) {
         super(pt);
     }
 
     @Override
     public String getName() {
-        return "vanish";
+        return "swiss_chest";
     }
 
     @Override
     public boolean perform(CommandSender sender, String[] args) {
-        String message = ChatColor.RED + "[PlayerTroll] Usage: /pt vanish <player>";
+        String message = ChatColor.RED + "[PlayerTroll] Usage: /pt swiss_chest <player>";
 
         if (args.length != 2) {
             sender.sendMessage(message);
@@ -42,24 +42,12 @@ public class Vanish extends SubCommand {
             return false;
         }
 
-        if (this.pt.trolls.get("vanish").contains(player.getUniqueId())) {
-            this.pt.trolls.get("vanish").remove(player.getUniqueId());
-            sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] vanish disabled for " + player.getName());
-
-            if (player.isOnline()) {
-                for (Player p : this.pt.onlinePlayers.values()) {
-                    p.showPlayer(this.pt, (Player) player);
-                }
-            }
+        if (this.pt.trolls.get("swiss_chest").contains(player.getUniqueId())) {
+            this.pt.trolls.get("swiss_chest").remove(player.getUniqueId());
+            sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] swiss_chest disabled for " + player.getName());
         } else {
-            this.pt.trolls.get("vanish").add(player.getUniqueId());
-            sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] vanish enabled for " + player.getName());
-
-            if (player.isOnline()) {
-                for (Player p : this.pt.onlinePlayers.values()) {
-                    p.hidePlayer(this.pt, (Player) player);
-                }
-            }
+            this.pt.trolls.get("swiss_chest").add(player.getUniqueId());
+            sender.sendMessage(ChatColor.GREEN + "[PlayerTroll] swiss_chest enabled for " + player.getName());
         }
 
         return true;

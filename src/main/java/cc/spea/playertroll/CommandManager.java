@@ -18,6 +18,7 @@ public class CommandManager implements TabExecutor {
         subcommands.add(new Vanish(pt));
         subcommands.add(new ListAll(pt));
         subcommands.add(new PlaceSpoof(pt));
+        subcommands.add(new SwissChest(pt));
     }
 
     public ArrayList<SubCommand> getSubCommands() { return subcommands; }
