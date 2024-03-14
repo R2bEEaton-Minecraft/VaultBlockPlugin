@@ -25,7 +25,6 @@ public class VaultBlockPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void playerInteractEvent(PlayerInteractEvent event) {
-        Bukkit.broadcastMessage("init");
         if (event.getClickedBlock() == null) return;
         if (event.getClickedBlock().getType() != Material.TRIAL_SPAWNER) return;
         if (event.getItem() == null) return;
