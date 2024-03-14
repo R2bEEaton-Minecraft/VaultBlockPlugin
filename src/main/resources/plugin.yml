@@ -1,21 +1,20 @@
-main: cc.spea.playertroll.PlayerTroll
-name: PlayerTroll
-version: '3.0.0'
+main: cc.spea.vaultblockplugin.VaultBlockPlugin
+name: VaultBlockPlugin
+version: '1.0.0'
 api-version: '1.20'
-description: Player Troll
+description: VaultBlockPlugin
 load: POSTWORLD
 author: R2bEEaton
 website: spea.cc
-prefix: PlayerTroll
+prefix: VaultBlockPlugin
 commands:
-  pt:
-    description: Player Troll Command
+  vbp:
+    description: VaultBlockPlugin
     aliases:
-      - playertroll
-      - josh
-    permission: playertroll.pt
+      - vaultblockplugin
+    permission: vaultblockplugin.vbp
     permission-message: You do not have permission!
 permissions:
-  playretroll.pt:
+  vaultblockplugin.vbp:
     description: Allows all commands
     default: op
